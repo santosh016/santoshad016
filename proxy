@@ -11,7 +11,7 @@
 
     <script>
     function loadPage() {
-        const glitchProxy = "YOUR_GLITCH_PROJECT_URL/proxy?url=";
+        const glitchProxy = "https://poised-equal-rhodium.glitch.me/proxy?url=";
         const siteUrl = document.getElementById('url').value;
         const fullUrl = glitchProxy + encodeURIComponent(siteUrl);
         
