@@ -8,24 +8,29 @@
     <input type="text" id="url" placeholder="Enter URL (e.g., https://example.com)">
     <button onclick="loadPage()">Go</button>
     <div id="result"></div>
+<script>
+function loadPage() {
+    const glitchProxy = "https://poised-equal-rhodium.glitch.me/proxy?url=";
+    const siteUrl = document.getElementById('url').value;
+    const fullUrl = glitchProxy + encodeURIComponent(siteUrl);
+    
+    document.getElementById('result').innerHTML = "Loading...";
+    
+    fetch(fullUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('result').innerHTML = data;
+        })
+        .catch(error => {
+            document.getElementById('result').innerHTML = "Error loading page: " + error.message;
+        });
+}
+</script>
 
-    <script>
-    function loadPage() {
-        const glitchProxy = "https://poised-equal-rhodium.glitch.me/proxy?url=";
-        const siteUrl = document.getElementById('url').value;
-        const fullUrl = glitchProxy + encodeURIComponent(siteUrl);
-        
-        document.getElementById('result').innerHTML = "Loading...";
-        
-        fetch(fullUrl)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('result').innerHTML = data;
-            })
-            .catch(error => {
-                document.getElementById('result').innerHTML = "Error loading page";
-            });
-    }
-    </script>
 </body>
 </html>
