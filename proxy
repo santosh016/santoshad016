@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Proxy</title>
+</head>
+<body>
+    <h1>Web Proxy</h1>
+    <input type="text" id="url" placeholder="Enter URL (e.g., https://example.com)">
+    <button onclick="loadPage()">Go</button>
+    <div id="result"></div>
+
+    <script>
+    function loadPage() {
+        const glitchProxy = "YOUR_GLITCH_PROJECT_URL/proxy?url=";
+        const siteUrl = document.getElementById('url').value;
+        const fullUrl = glitchProxy + encodeURIComponent(siteUrl);
+        
+        document.getElementById('result').innerHTML = "Loading...";
+        
+        fetch(fullUrl)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById('result').innerHTML = "Error loading page";
+            });
+    }
+    </script>
+</body>
+</html>
